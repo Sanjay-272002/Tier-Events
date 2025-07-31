@@ -2,9 +2,10 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 
 const isPublicRoute = createRouteMatcher([
-    "/sign-in",
-    "/sign-up",
-    "/"
+    '/sign-in(.*)',
+  '/sign-up(.*)',
+    "/",
+    "/onboarding",
 ])
 
 
@@ -22,12 +23,7 @@ export default clerkMiddleware(async (auth, req) => {
     //not logged in
     if(!userId){
         // If user is not logged in and trying to access a protected route
-        if(!isPublicRoute(req)  ){
-            return NextResponse.redirect(new URL("/sign-in", req.url))
-        }
-
-        // If the request is for a protected API and the user is not logged in
-        if(isApiRequest ){
+        if(!isPublicRoute(req) || isApiRequest ){
             return NextResponse.redirect(new URL("/sign-in", req.url))
         }
     }
@@ -36,5 +32,5 @@ export default clerkMiddleware(async (auth, req) => {
 })
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!_next/image|_next/static|favicon.ico).*)"],
 };
