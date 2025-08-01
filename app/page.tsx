@@ -1,9 +1,18 @@
+import FinalCTA from "@/components/organisms/FinalCTA";
+import HomeHero from "@/components/organisms/HomeHero";
+import MembershipTiers from "@/components/organisms/MembershipTiers";
+import UpcomingEvents from "@/components/organisms/UpcomingEvents";
+import WhyChooseEventTier from "@/components/organisms/WhyChooseEventTier";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-    landing page
-    </div>
+    <>
+      <HomeHero />
+      <MembershipTiers />
+     <UpcomingEvents />
+      <WhyChooseEventTier />
+      <FinalCTA />
+    </>
   );
 }
