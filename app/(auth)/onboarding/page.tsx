@@ -19,6 +19,7 @@ export default function OnboardingComponent() {
   
   const handleSubmit = async (formData: FormData) => {
     const res = await completeOnboarding(formData)
+    console.log("submit resposne",res)
     if (res?.message) {
       // Reloads the user's data from the Clerk API
       await user?.reload()
