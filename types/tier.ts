@@ -10,10 +10,11 @@ export const tierStyles: Record<string, string> = {
 
  
 export interface EventCardProps {
-  image: string;
+    id:string;
+  image_url: string;
   tier: "Free" | "Silver" | "Gold" | "Platinum";
-  date: string;
-  name: string;
+  event_date: string;
+  title: string;
   description: string;
   location: string;
 }

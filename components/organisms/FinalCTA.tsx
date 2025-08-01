@@ -13,7 +13,7 @@ export default function FinalCTA() {
       </p>
       <button
         onClick={() => router.push("/sign-up")}
-        className="bg-black hover:bg-purple-900 text-white font-semibold px-8 py-3 rounded transition text-lg shadow"
+        className="bg-black hover:bg-purple-900 text-white font-semibold px-8 py-3 rounded transition text-lg shadow cursor-pointer"
       >
         Start Free Trial
       </button>

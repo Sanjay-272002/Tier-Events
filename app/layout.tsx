@@ -24,11 +24,7 @@ export default async function RootLayout({
 }>) {
 
   const user = await currentUser();
-  if (user) {
-    console.log("Current User:", user.firstName, user.lastName, user.emailAddresses, user.publicMetadata?.tier);
-  } else {
-    console.log("Current User: null");
-  }
+  
   // Prepare user props for Header
   const headerUser = user
     ? {
@@ -37,7 +33,7 @@ export default async function RootLayout({
         imageUrl: user.imageUrl,
       }
     : undefined;
-  console.log("Header User:", headerUser);
+
   return (
     <ClerkProvider>
 

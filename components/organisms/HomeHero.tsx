@@ -15,7 +15,7 @@ export default function HomeHero() {
       </p>
       <button
         onClick={() => router.push("/sign-up")}
-        className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded transition text-lg shadow"
+        className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded transition text-lg shadow cursor-pointer"
       >
         Join Now
       </button>
