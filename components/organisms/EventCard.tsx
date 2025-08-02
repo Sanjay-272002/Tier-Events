@@ -1,3 +1,5 @@
+'use client'
+
 import { EventCardProps, tierStyles } from "@/types/tier";
 import { JSX } from "react";
 import { FaCrown, FaMedal, FaGem, FaUser } from "react-icons/fa";
@@ -19,9 +21,10 @@ export default function EventCard({
   title,
   description,
   location,
+  onClick,
 }: EventCardProps) {
   return (
-    <div className={`rounded-xl overflow-hidden shadow-lg border ${tierStyles[tier]} flex flex-col`}>
+    <div onClick={onClick} className={`rounded-xl overflow-hidden shadow-lg border ${tierStyles[tier]} flex flex-col`}>
       <img src={image_url} alt={title} className="w-full h-40 object-cover" />
       <div className="p-4 flex-1 flex flex-col">
         <div className="flex items-center justify-between mb-2">

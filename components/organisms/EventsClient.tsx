@@ -1,12 +1,12 @@
 // app/events/EventsClient.tsx
 "use client";
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, use } from "react";
 import { useUser } from "@clerk/nextjs";
 import EventCard from "@/components/organisms/EventCard";
 import { EventCardProps, TIER_ORDER } from "@/types/tier";      
 import { useDebounce } from "@/hooks/useDebounce";
 import toast from "react-hot-toast";
-
+import { useRouter } from "next/navigation";
 
 const EVENTS_PER_PAGE = 9;
 
@@ -21,6 +21,7 @@ export default function EventsClient({ events }: { events: EventCardProps[] }) {
   const tierOptions = ["All", ...TIER_ORDER.slice(0, userTierIndex + 1).map(t => t.charAt(0).toUpperCase() + t.slice(1))];
   const hasShownToast = useRef(false);
   const isPlatinum = userTierRaw?.toLowerCase() === "platinum";
+  const router=useRouter();
      useEffect(() => {
     if (!isPlatinum && !hasShownToast.current) {
         toast.dismiss();
@@ -92,6 +93,7 @@ export default function EventsClient({ events }: { events: EventCardProps[] }) {
               description={event.description}
               location={event.location}
               id={event.id}
+             onClick={() => router.push(`/events/${event.id}`)}
             />
           ))
         )}
