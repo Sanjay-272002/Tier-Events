@@ -13,9 +13,10 @@ const inter = Inter({
   weight: ['400', '600', '700'],
   display: 'swap',
 })
-export const metadata: Metadata = {
-  title: "Event Tier",
-  description: "Event Tier Website which displays events based on user tier",
+export const metadata:Metadata = {
+  title: 'Your App',
+  description: '...',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
 };
 
 export default async function RootLayout({

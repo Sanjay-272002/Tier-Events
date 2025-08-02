@@ -32,9 +32,7 @@ export default function Header({ user }: HeaderProps) {
                 {user.username?.charAt(0).toUpperCase() || "U"}
               </div>
             )}
-           <button className="px-3 py-1 bg-black text-white rounded hover:bg-gray-800 transition cursor-pointer" onClick={handleClick}>
-               Update Tier
-              </button>
+           
 
             <SignOutButton>
               <button className="px-3 py-1 bg-black text-white rounded hover:bg-gray-800 transition cursor-pointer">

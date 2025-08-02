@@ -24,7 +24,7 @@ export default function EventsClient({ events }: { events: EventCardProps[] }) {
   const router=useRouter();
      useEffect(() => {
     if (!isPlatinum && !hasShownToast.current) {
-        toast.dismiss();
+        
     toast("Some events require Higher tier access. Upgrade to Higher tier to unlock them.", {
       icon: "🔒",
     });
