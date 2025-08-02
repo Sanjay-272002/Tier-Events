@@ -1,10 +1,11 @@
 // app/events/EventsClient.tsx
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import EventCard from "@/components/organisms/EventCard";
             import { EventCardProps } from "@/types/tier";      
 import { useDebounce } from "@/hooks/useDebounce";
+import toast from "react-hot-toast";
 
 const TIER_ORDER = ["free", "silver", "gold", "platinum"];
 const EVENTS_PER_PAGE = 9;
@@ -19,8 +20,14 @@ export default function EventsClient({ events }: { events: EventCardProps[] }) {
   const userTierIndex = TIER_ORDER.indexOf(userTierRaw ?? "");
   const tierOptions = ["All", ...TIER_ORDER.slice(0, userTierIndex + 1).map(t => t.charAt(0).toUpperCase() + t.slice(1))];
 
-
-
+  const isPlatinum = userTierRaw?.toLowerCase() === "platinum";
+     useEffect(() => {
+    if (!isPlatinum ) {
+      toast("Some events require Higher tier access. Upgrade to Higher tier to  unlock them.", {
+        icon: "🔒",
+      });
+    }
+  }, [isPlatinum]);
   const filteredEvents = useMemo(() => {
     let filtered = events;
 

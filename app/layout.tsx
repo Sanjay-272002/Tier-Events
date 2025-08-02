@@ -7,6 +7,7 @@ import Header from "@/components/organisms/Header";
 import HeaderConditional from "@/components/organisms/HeaderConditional";
 import Footer from "@/components/organisms/Footer";
 import FooterConditional from "@/components/organisms/FooterConditional";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '600', '700'],
@@ -29,7 +30,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className="flex flex-col min-h-screen">
         <HeaderConditional />
+         <Toaster position="top-center" />
         {children}
+       
         <FooterConditional />
         </body>
     </html>
