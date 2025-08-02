@@ -5,7 +5,6 @@ const isPublicRoute = createRouteMatcher([
     '/sign-in(.*)',
   '/sign-up(.*)',
     "/",
-    "/onboarding",
 ])
 
 
@@ -16,10 +15,10 @@ export default clerkMiddleware(async (auth, req) => {
      const isAccessingeventDashboard = currentUrl.pathname === "/events"
      const isApiRequest = currentUrl.pathname.startsWith("/api")
 
-    //  // If user is logged in and accessing a public route but not the dashboard
-    // if(userId && isPublicRoute(req) && !isAccessingeventDashboard) {
-    //     return NextResponse.redirect(new URL("/events", req.url))
-    // }
+     // If user is logged in and accessing a public route but not the dashboard
+    if(userId && isPublicRoute(req) && !isAccessingeventDashboard) {
+        return NextResponse.redirect(new URL("/events", req.url))
+    }
     //not logged in
     if(!userId){
         // If user is not logged in and trying to access a protected route
@@ -32,5 +31,6 @@ export default clerkMiddleware(async (auth, req) => {
 })
 
 export const config = {
-  matcher: ["/((?!_next/image|_next/static|favicon.ico).*)"],
-};
+ 
+    matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+}

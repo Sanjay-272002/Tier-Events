@@ -7,7 +7,7 @@ export default function Header({ user }: HeaderProps) {
       <div className="text-xl font-bold text-black text-black-700">EventTier</div>
       <div className="flex items-center gap-4">
         {!user ? (
-          <SignUpButton mode="redirect">
+          <SignUpButton mode="redirect" >
             <button className="px-4 py-2 bg-black text-white rounded hover:bg-gray-800 transition cursor-pointer">
               Sign Up
             </button>
