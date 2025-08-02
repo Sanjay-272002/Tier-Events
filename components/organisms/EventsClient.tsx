@@ -15,7 +15,7 @@ export default function EventsClient({ events }: { events: EventCardProps[] }) {
   const [search, setSearch] = useState("");
   const [tierFilter, setTierFilter] = useState("All");
   const [page, setPage] = useState(1);
-   const debouncedSearch = useDebounce ? useDebounce(search, 400) : search;
+   const debouncedSearch = useDebounce(search, 400);
   const userTierRaw = user?.publicMetadata?.tier as string | undefined;
   const userTierIndex = TIER_ORDER.indexOf(userTierRaw ?? "");
   const tierOptions = ["All", ...TIER_ORDER.slice(0, userTierIndex + 1).map(t => t.charAt(0).toUpperCase() + t.slice(1))];
