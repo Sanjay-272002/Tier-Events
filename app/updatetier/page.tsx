@@ -1,5 +1,6 @@
+import OnboardingComponent from '@/components/organisms/OnBoarding'
 import React from 'react'
-import OnboardingComponent from '../(auth)/onboarding/page'
+
 
 export default function page() {
   return (

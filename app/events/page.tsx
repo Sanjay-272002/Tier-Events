@@ -4,7 +4,11 @@ import EventsClient from "@/components/organisms/EventsClient";
 import { cookies } from "next/headers";
 
 export default async function EventsDashboardPage() {
-   const cookieHeader = cookies().toString(); 
+   const cookievalue = cookies()
+    const cookieHeader = (await cookievalue)
+    .getAll()
+    .map((c) => `${c.name}=${c.value}`)
+    .join('; ')
   const events = await getEvents(cookieHeader);
 
   return (
