@@ -4,13 +4,12 @@ import { getEventBySlug } from '@/lib/api'
 import { notFound } from 'next/navigation'
 
 interface EventPageProps {
-  params: {
-    slug: string
-  }
+  params: Promise<{ slug: string }>;
 }
 
 export default async function EventDetailPage({ params }: EventPageProps) {
-  const event = await getEventBySlug(params.slug)
+   const { slug } = await params;
+  const event = await getEventBySlug(slug);
 
   if (!event) return notFound()
 
