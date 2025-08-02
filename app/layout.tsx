@@ -23,23 +23,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const user = await currentUser();
-  
-  // Prepare user props for Header
-  const headerUser = user
-    ? {
-        username: user.username || user.firstName || user.emailAddresses?.[0]?.emailAddress || "User",
-        tierName: typeof user.publicMetadata?.tier === "string" ? user.publicMetadata.tier : "Member",
-        imageUrl: user.imageUrl,
-      }
-    : undefined;
-
   return (
     <ClerkProvider>
 
     <html lang="en">
       <body className="flex flex-col min-h-screen">
-        <HeaderConditional user={headerUser} />
+        <HeaderConditional />
         {children}
         <FooterConditional />
         </body>
