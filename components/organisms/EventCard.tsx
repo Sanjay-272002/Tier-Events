@@ -2,13 +2,13 @@ import { EventCardProps, tierStyles } from "@/types/tier";
 import { JSX } from "react";
 import { FaCrown, FaMedal, FaGem, FaUser } from "react-icons/fa";
 
-
 const tierIcons: Record<string, JSX.Element> = {
   Free: <FaUser className="text-purple-400" />,
   Silver: <FaMedal className="text-gray-400" />,
   Gold: <FaCrown className="text-yellow-400" />,
   Platinum: <FaGem className="text-purple-500" />,
 };
+
 
 
 

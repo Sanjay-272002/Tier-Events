@@ -18,3 +18,4 @@ export interface EventCardProps {
   description: string;
   location: string;
 }
+export const TIER_ORDER = ["free", "silver", "gold", "platinum"];

@@ -1,8 +1,13 @@
+'use client'
 import { tierStyles } from "@/types/tier";
 import { SignOutButton, SignUpButton } from "@clerk/nextjs";
 import React from "react";
-
+import { useRouter } from 'next/navigation'
 export default function Header({ user }: HeaderProps) {
+  const router = useRouter()
+  const handleClick = () => {
+    router.push('/updatetier') // or any dynamic path like `/update-tier?from=events`
+  }
   return (
     <header className="w-full flex items-center justify-between px-4 py-3 bg-white shadow-md">
       <div className="text-xl font-bold text-black text-black-700">EventTier</div>
@@ -27,6 +32,10 @@ export default function Header({ user }: HeaderProps) {
                 {user.username?.charAt(0).toUpperCase() || "U"}
               </div>
             )}
+           <button className="px-3 py-1 bg-black text-white rounded hover:bg-gray-800 transition cursor-pointer" onClick={handleClick}>
+               Update Tier
+              </button>
+
             <SignOutButton>
               <button className="px-3 py-1 bg-black text-white rounded hover:bg-gray-800 transition cursor-pointer">
                 Sign Out

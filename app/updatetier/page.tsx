@@ -1,7 +1,8 @@
 import React from 'react'
+import OnboardingComponent from '../(auth)/onboarding/page'
 
 export default function page() {
   return (
-    <div>page</div>
+    <OnboardingComponent  isupdate={true}/>
   )
 }
