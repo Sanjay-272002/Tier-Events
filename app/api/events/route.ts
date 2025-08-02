@@ -14,10 +14,12 @@ const tierMap: Record<string, number> = {
 export async function GET(req: Request) {
   const { userId } = await auth()
  const user = await currentUser()
+ console.warn("User ID:", userId);
+ console.warn("User Metadata:", user?.publicMetadata);
   if (!userId || !user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-
+  
   const userTier = user.publicMetadata?.tier as string | undefined
 
   if (!userTier || !(userTier in tierMap)) {

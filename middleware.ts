@@ -17,7 +17,7 @@ export default clerkMiddleware(async (auth, req) => {
 
 
 
-  
+   console.warn("Middleware User ID:", userId);
   if (isApiRequest && !userId) {
     return new Response(JSON.stringify({ error: "Unauthorized" }), {
       status: 401,

@@ -9,8 +9,9 @@ export default async function EventsDashboardPage() {
     .getAll()
     .map((c) => `${c.name}=${c.value}`)
     .join('; ')
+    console.warn("Cookie Header:", cookieHeader);
   const events = await getEvents(cookieHeader);
-
+console.warn("Events fetched:", events);
   return (
     <div className="min-h-screen bg-white flex flex-col items-center px-4 pb-40">
       <div className="w-full max-w-6xl mx-auto mt-10 mb-6">
