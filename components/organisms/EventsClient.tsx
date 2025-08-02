@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { useUser } from "@clerk/nextjs";
 import EventCard from "@/components/organisms/EventCard";
             import { EventCardProps } from "@/types/tier";      
+import { useDebounce } from "@/hooks/useDebounce";
 
 const TIER_ORDER = ["free", "silver", "gold", "platinum"];
 const EVENTS_PER_PAGE = 9;
@@ -13,7 +14,7 @@ export default function EventsClient({ events }: { events: EventCardProps[] }) {
   const [search, setSearch] = useState("");
   const [tierFilter, setTierFilter] = useState("All");
   const [page, setPage] = useState(1);
-
+   const debouncedSearch = useDebounce ? useDebounce(search, 400) : search;
   const userTierRaw = user?.publicMetadata?.tier as string | undefined;
   const userTierIndex = TIER_ORDER.indexOf(userTierRaw ?? "");
   const tierOptions = ["All", ...TIER_ORDER.slice(0, userTierIndex + 1).map(t => t.charAt(0).toUpperCase() + t.slice(1))];
@@ -27,7 +28,7 @@ export default function EventsClient({ events }: { events: EventCardProps[] }) {
       filtered = filtered.filter((e) => e.tier?.toLowerCase() === tierFilter.toLowerCase());
     }
 
-    if (search.trim()) {
+    if (debouncedSearch?.trim()) {
       filtered = filtered.filter(
         (e) =>
           e.title?.toLowerCase().includes(search.toLowerCase()) ||
@@ -36,7 +37,7 @@ export default function EventsClient({ events }: { events: EventCardProps[] }) {
       );
     }
     return filtered;
-  }, [events, search, tierFilter]);
+  }, [events, debouncedSearch, tierFilter]);
 
   const totalPages = Math.ceil(filteredEvents.length / EVENTS_PER_PAGE);
   const paginatedEvents = filteredEvents.slice(

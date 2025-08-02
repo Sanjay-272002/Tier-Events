@@ -27,7 +27,7 @@ export default function EventCard({
         <div className="flex items-center justify-between mb-2">
           <span className="flex items-center gap-1 font-semibold text-sm">
             {tierIcons[tier]}
-            <span className="capitalize">{tier}</span>
+            <span className="capitalize text-black" >{tier}</span>
           </span>
           <span className="text-xs text-gray-500">{event_date}</span>
         </div>
